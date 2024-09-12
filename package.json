@@ -1,0 +1,54 @@
+{
+  "name": "obsidian-sample-plugin",
+  "version": "1.0.0",
+  "description": "This is a sample plugin for Obsidian (https://obsidian.md)",
+  "main": "src/obsidian/main.js",
+  "scripts": {
+    "obsidian:dev": "node esbuild.config.mjs",
+    "obsidian:build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production && npx tailwindcss -i ./src/index.css -o ./styles.css",
+    "web:build": "react-scripts build",
+    "web:dev": "react-scripts start",
+    "version": "node version-bump.mjs && git add manifest.json versions.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9",
+    "@types/lodash": "^4.17.7",
+    "@types/node": "^16.11.6",
+    "@types/react": "^18.3.4",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "5.29.0",
+    "@typescript-eslint/parser": "5.29.0",
+    "builtin-modules": "3.3.0",
+    "esbuild": "0.17.3",
+    "obsidian": "latest",
+    "tslib": "2.4.0",
+    "typescript": "4.7.4"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.11.5",
+    "classnames": "^2.5.1",
+    "js-yaml": "^4.1.0",
+    "lodash": "^4.17.21",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.1",
+    "react-scripts": "^5.0.1",
+    "styled-components": "^6.1.13",
+    "tailwindcss": "^3.4.10"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

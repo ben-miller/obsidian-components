@@ -1,0 +1,29 @@
+.menu-container {
+    margin: 20px;
+    width: 300px;
+}
+
+.menu__title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.menu-parent-title {
+    color: black;
+    text-decoration: none;
+    /*border-bottom: 1px dotted #bfbfbf;*/
+}
+
+.menu-list {
+    padding-left: 0;
+}
+
+.menu__item {
+    border-bottom: 1px dotted #bfbfbf;
+    list-style-type: none;
+    color: black;
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
