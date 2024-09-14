@@ -4,6 +4,7 @@ import InboxCountTable from "../components/containers/InboxCountTable";
 import ApolloProvider from "../graphql/ApolloProvider";
 import {fakeData} from "../models/fakeData";
 import {ProgressTable} from "../components/presenters/ProgressTable/ProgressTable";
+import {DayOfWeek} from "../components/containers/DayOfWeek";
 
 const roots: Map<Element, Root> = new Map();
 
@@ -14,8 +15,8 @@ const RenderedComponent: React.FC<{ componentName: string, props?: any }> = ({ c
 		 */
 		case 'InboxCountTable':
 			return <InboxCountTable />;
-		case 'Time':
-			return <ProgressTable data={fakeData.timeMetrics} cols={10}/>
+		case 'DayOfWeek':
+			return <DayOfWeek />
 		case 'JobSearch':
 			return <ProgressTable data={fakeData.jobSearchMetrics} cols={10}/>
 		case 'MindAndBody':
