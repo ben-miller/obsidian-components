@@ -38,11 +38,13 @@ const ItemContainer = styled.div`
 `
 
 export interface DotCountTableProps {
+	className?: string;
 	title?: string;
 	data: ProgressTableData;
 	cols: number;
 	dotSize?: number;
 	dotGap?: number;
+	onDoubleClick?: () => void;
 }
 
 export const parseYamlToDotCountTableProps = (parsedData: any): DotCountTableProps | null => {
@@ -68,11 +70,11 @@ export const parseYamlToDotCountTableProps = (parsedData: any): DotCountTablePro
 	}
 };
 
-export const ProgressTable: React.FC<DotCountTableProps> = ({ title, data, cols = 10, dotSize = 20, dotGap = 16}) => {
+export const ProgressTable: React.FC<DotCountTableProps> = ({ title, data, cols = 10, dotSize = 20, dotGap = 16, onDoubleClick, className }) => {
 	const maxWidth = cols ? cols * dotSize + (cols - 1) * dotGap : undefined
 
 	return (
-		<Container>
+		<Container onDoubleClick={onDoubleClick} className={className}>
 			{title && <h2>{title}</h2>}
 			<MainComponent>
 				{data.map((section, sectionIndex) => (

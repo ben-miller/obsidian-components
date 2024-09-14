@@ -6,6 +6,7 @@ import {DotChart} from "./presenters/DotChart/DotChart";
 import {fakeData} from "../models/fakeData";
 import {ProgressTable} from "./presenters/ProgressTable/ProgressTable";
 import {WeeklyKPIsView} from "../views/WeeklyKPIsView";
+import {MindAndBody} from "./containers/MindAndBody";
 
 const routes = [
 	{ path: "/", name: "Inbox Counts", component: <InboxCountTable />, exact: true },
@@ -15,6 +16,7 @@ const routes = [
 	{ path: "/days_in_year", name: "Days in Year", component: <ProgressTable title="Dot count table" data={fakeData.mindAndBodyMetrics} cols={5} /> },
 	{ path: "/progresss_table", name: "Progress Table", component: <ProgressTable title="Progress table" data={fakeData.mindAndBodyMetrics} cols={5} /> },
 	{ path: "/weekly_kpis", name: "Weekly KPis", component: <WeeklyKPIsView /> },
+	{ path: "/mind_and_body", name: "Mind & Body", component: <MindAndBody /> },
 ];
 
 const Navbar = () => (

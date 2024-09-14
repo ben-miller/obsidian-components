@@ -5,6 +5,7 @@ import ApolloProvider from "../graphql/ApolloProvider";
 import {fakeData} from "../models/fakeData";
 import {ProgressTable} from "../components/presenters/ProgressTable/ProgressTable";
 import {DayOfWeek} from "../components/containers/DayOfWeek";
+import {MindAndBody} from "../components/containers/MindAndBody";
 
 const roots: Map<Element, Root> = new Map();
 
@@ -20,7 +21,7 @@ const RenderedComponent: React.FC<{ componentName: string, props?: any }> = ({ c
 		case 'JobSearch':
 			return <ProgressTable data={fakeData.jobSearchMetrics} cols={10}/>
 		case 'MindAndBody':
-			return <ProgressTable data={fakeData.mindAndBodyMetrics} cols={10}/>
+			return <MindAndBody />
 
 		/**
 		 * Configured by YAML.
