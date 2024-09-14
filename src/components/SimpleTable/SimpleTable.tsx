@@ -13,13 +13,15 @@ interface SimpleTableSection {
 export type SimpleTableData = SimpleTableSection[];
 
 export const SimpleTable: React.FC<{
+	className?: string,
 	data: SimpleTableData,
 	onDoubleClick?: () => void
-}> = ({ data, onDoubleClick }) => {
+}> = ({ className, data, onDoubleClick }) => {
 	const styles = {
 		menuContainer: {
 			margin: '20px',
 			width: '300px',
+			userSelect: 'none' as const
 		},
 		menuParentTitle: {
 			color: 'black',
@@ -42,7 +44,7 @@ export const SimpleTable: React.FC<{
 	};
 
 	return (
-		<div style={styles.menuContainer} onDoubleClick={onDoubleClick}>
+		<div style={styles.menuContainer} onDoubleClick={onDoubleClick} className={className}>
 			<div id="simple-table">
 				{data.map((section, index) => (
 					<div key={index}>

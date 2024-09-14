@@ -1,26 +1,26 @@
 import { gql } from '@apollo/client';
 
 export const GET_INBOX_COUNTS = gql`
-    query GetInboxCounts {
+    query GetInboxCounts($forceRefresh: Boolean!) {
         sources {
-            obsidian {
+            obsidian(forceRefresh: $forceRefresh) {
                 inboxes
                 inbox_items
             }
-            trello {
+            trello(forceRefresh: $forceRefresh) {
                 inbox_size
             }
-            youtube {
+            youtube(forceRefresh: $forceRefresh) {
                 liked_videos
             }
-            tidal {
+            tidal(forceRefresh: $forceRefresh) {
                 uncategorized_tracks
             }
-            org_mode {
+            org_mode(forceRefresh: $forceRefresh) {
                 inboxes
                 inbox_items
             }
-            firefox {
+            firefox(forceRefresh: $forceRefresh) {
                 bookmarks
             }
         }
