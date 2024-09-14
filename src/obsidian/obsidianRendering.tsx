@@ -1,9 +1,9 @@
 import React from 'react';
 import { Root, createRoot } from "react-dom/client";
-import InboxCountTable from "../components/InboxCountTable";
+import InboxCountTable from "../components/containers/InboxCountTable";
 import ApolloProvider from "../graphql/ApolloProvider";
 import {fakeData} from "../models/fakeData";
-import {ProgressTable} from "../components/ProgressTable/ProgressTable";
+import {ProgressTable} from "../components/presenters/ProgressTable/ProgressTable";
 
 const roots: Map<Element, Root> = new Map();
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import {ProgressTable} from "../components/ProgressTable/ProgressTable";
+import {ProgressTable} from "../components/presenters/ProgressTable/ProgressTable";
 import {fakeData} from "../models/fakeData";
 
 export const WeeklyKPIsView: React.FC = () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Quote} from "../../models/quote";
+import {Quote} from "../../../models/quote";
 
 const QuoteComponent = ({ text, author, context }: Quote) => (
 	<div>

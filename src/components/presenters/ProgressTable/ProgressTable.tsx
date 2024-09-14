@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components';
 import {DotChart} from "../DotChart/DotChart";
-import {ProgressDisplayType, ProgressTableData} from "../../models/progressTableData";
-import ProgressBar from "../ProgressChart/ProgressBar";
+import {ProgressDisplayType, ProgressTableData} from "../../../models/progressTableData";
+import ProgressBar from "../ProgressBar/ProgressBar";
 
 const Container = styled.div`
 	padding: 20px;

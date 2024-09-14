@@ -3,7 +3,7 @@ import {cleanupReactRoots, renderComponent} from "./obsidianRendering";
 import {
 	DotCountTableProps,
 	parseYamlToDotCountTableProps
-} from "../components/ProgressTable/ProgressTable";
+} from "../components/presenters/ProgressTable/ProgressTable";
 import yaml from "js-yaml";
 
 interface ParsedYaml {

@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import InboxCountTable from "./InboxCountTable";
-import QuoteComponent from "./QuoteComponent/QuoteComponent";
-import {DotChart} from "./DotChart/DotChart";
+import InboxCountTable from "./containers/InboxCountTable";
+import QuoteComponent from "./presenters/QuoteComponent/QuoteComponent";
+import {DotChart} from "./presenters/DotChart/DotChart";
 import {fakeData} from "../models/fakeData";
-import {ProgressTable} from "./ProgressTable/ProgressTable";
+import {ProgressTable} from "./presenters/ProgressTable/ProgressTable";
 import {WeeklyKPIsView} from "../views/WeeklyKPIsView";
 
 const routes = [

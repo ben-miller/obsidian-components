@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { useQuery } from "@apollo/client";
-import { GET_INBOX_COUNTS } from "../graphql/queries";
-import {SimpleTable, SimpleTableData} from './SimpleTable/SimpleTable';
+import { GET_INBOX_COUNTS } from "../../graphql/queries";
+import {SimpleTable, SimpleTableData} from '../presenters/SimpleTable/SimpleTable';
 import styled from "styled-components";
 
 const SimpleTableWithFlash = styled(SimpleTable)<{data: any, pulse: boolean}>`
