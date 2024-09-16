@@ -1,65 +1,36 @@
-import {ProgressTable} from "../presenters/ProgressTable/ProgressTable";
-import {ProgressDisplayType} from "../../models/progressTableData";
-import {useQuery} from "@apollo/client";
+import {ProgressDisplayType, ProgressTableData} from "../../models/progressTableData";
 import {GET_MIND_AND_BODY_METRICS} from "../../graphql/queries";
-import React, {useState} from "react";
-import styled from "styled-components";
+import {ProgressTableContainer} from "./shared/ProgressTableContainer";
 
-const mindAndBodyMetrics = (
-	runningSessions: number,
-	weightTrainingSessions: number,
-	meditationHours: number
-) => [
+export type MindAndBodyMetrics = {
+	running_total_sessions: number,
+	weight_training_total_sessions: number,
+	meditation_total_hours: number
+}
+
+const metricsMap = ({
+						running_total_sessions,
+						weight_training_total_sessions,
+						meditation_total_hours
+}: MindAndBodyMetrics): ProgressTableData => [
 	{
 		name: 'Running',
 		children: [
-			{ name: 'sessions this week', current: runningSessions, total: 6, type: ProgressDisplayType.Dots },
+			{ name: 'sessions this week', current: running_total_sessions, total: 6, type: ProgressDisplayType.Dots },
 		],
 	},
 	{
 		name: 'Weight Training',
 		children: [
-			{ name: 'sessions this week', current: weightTrainingSessions, total: 4, type: ProgressDisplayType.Dots },
+			{ name: 'sessions this week', current: weight_training_total_sessions, total: 4, type: ProgressDisplayType.Dots },
 		],
 	},
 	{
 		name: 'Meditation',
 		children: [
-			{ name: 'hours this week', current: meditationHours, total: 14, type: ProgressDisplayType.Dots },
+			{ name: 'hours this week', current: meditation_total_hours, total: 14, type: ProgressDisplayType.Dots },
 		],
 	},
 ]
 
-const ProgressTableWithFlash = styled(ProgressTable)<{data: any, pulse: boolean}>`
-	${(props) => props.pulse ? 'opacity: 0.2' : ''};
-`
-
-export const MindAndBody = () => {
-	const { loading, error, data, refetch } = useQuery(GET_MIND_AND_BODY_METRICS, {
-		variables: { forceRefresh: false }
-	});
-	const [pulse, setPulse] = useState(false);
-
-	if (loading) return <p>Loading...</p>;
-	if (error) return <p>Error loading data</p>;
-
-	const handleReload = () => {
-		setPulse(true);
-		refetch({forceRefresh: true}).then((response) => {
-			console.log('data reloaded')
-			setPulse(false)
-		}).catch((error) => {
-			console.error('Error fetching data', error);
-		})
-	}
-
-	return <ProgressTableWithFlash
-		data={mindAndBodyMetrics(
-			data.sources.calendar.running_total_sessions,
-			data.sources.calendar.weight_training_total_sessions,
-			data.sources.calendar.meditation_total_hours
-		)}
-		onDoubleClick={handleReload}
-		cols={10}
-		pulse={pulse} />
-}
+export const MindAndBody = () => ProgressTableContainer(GET_MIND_AND_BODY_METRICS, metricsMap)
