@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import {DotChart} from "../DotChart/DotChart";
+import {DotCountChart} from "../DotChart/DotCountChart";
 import {ProgressDisplayType, ProgressTableData} from "../../../models/progressTableData";
 import ProgressBar from "../ProgressBar/ProgressBar";
 
@@ -86,7 +86,7 @@ export const ProgressTable: React.FC<DotCountTableProps> = ({ title, data, cols 
 						</LabelContainer>
 						<Item key={sectionIndex}>
 							{section.children[0].type === ProgressDisplayType.Dots ?
-								<DotChart
+								<DotCountChart
 									current={section.children[0].current}
 									total={section.children[0].total}
 									cols={cols}/> :

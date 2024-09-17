@@ -25,7 +25,7 @@ interface DotChartProps {
 	dotGap?: number;
 }
 
-export const DotChart: React.FC<DotChartProps> = ({ title, current, total, cols = 10, dotSize = 20, dotGap = 16 }) => {
+export const DotCountChart: React.FC<DotChartProps> = ({ title, current, total, cols = 10, dotSize = 20, dotGap = 16 }) => {
 	const arr = new Array(total)
 		.fill(true, 0, current)
 		.fill(false, current, total)
