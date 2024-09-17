@@ -44,6 +44,7 @@ export const GET_JOB_SEARCH_METRICS = gql`
 			calendar(forceRefresh: $forceRefresh) {
 				dev { total_hours }
 				job_search{ total_sessions }
+				leet_code { total_sessions }
 			}
 		}
 	}

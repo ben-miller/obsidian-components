@@ -12,7 +12,7 @@ const metricsMap = (metrics: Record<string, ActivityMetrics>): ProgressTableData
 	{
 		name: 'LeetCode',
 		children: [
-			{ name: 'sessions this week', current: metrics.dev.total_sessions, total: 5, type: ProgressDisplayType.Dots },
+			{ name: 'sessions this week', current: metrics.leet_code.total_sessions, total: 5, type: ProgressDisplayType.Dots },
 		],
 	},
 	{
