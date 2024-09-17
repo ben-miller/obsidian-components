@@ -6,22 +6,23 @@ import {fakeData} from "../models/fakeData";
 import {ProgressTable} from "../components/presenters/ProgressTable/ProgressTable";
 import {DayOfWeek} from "../components/containers/DayOfWeek";
 import {MindAndBody} from "../components/containers/MindAndBody";
+import {JobSearchProgress} from "../components/containers/JobSearchProgress";
 
 const roots: Map<Element, Root> = new Map();
 
 const RenderedComponent: React.FC<{ componentName: string, props?: any }> = ({ componentName, props }) => {
 	switch (componentName) {
 		/**
-		 * Configured by fake data / GraphQL call.
+		 * Configured by GraphQL call.
 		 */
 		case 'InboxCountTable':
 			return <InboxCountTable />;
 		case 'DayOfWeek':
 			return <DayOfWeek />
-		case 'JobSearch':
-			return <ProgressTable data={fakeData.jobSearchMetrics} cols={10}/>
 		case 'MindAndBody':
 			return <MindAndBody />
+		case 'JobSearchProgress':
+			return <JobSearchProgress />
 
 		/**
 		 * Configured by YAML.

@@ -38,3 +38,13 @@ export const GET_MIND_AND_BODY_METRICS = gql`
 		}
 	}
 `
+export const GET_JOB_SEARCH_METRICS = gql`
+	query GetInboxCounts($forceRefresh: Boolean!) {
+		sources {
+			calendar(forceRefresh: $forceRefresh) {
+				dev { total_hours }
+				job_search{ total_sessions }
+			}
+		}
+	}
+`
