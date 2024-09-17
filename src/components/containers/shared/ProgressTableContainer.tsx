@@ -4,13 +4,18 @@ import styled from "styled-components";
 import {ProgressTable} from "../../presenters/ProgressTable/ProgressTable";
 import {ProgressTableData} from "../../../models/progressTableData";
 
+export type ActivityMetrics = {
+	total_sessions: number,
+	total_hours: number
+}
+
 const ProgressTableWithFlash = styled(ProgressTable)<{data: any, pulse: boolean}>`
 	${(props) => props.pulse ? 'opacity: 0.2' : ''};
 `
 
 export const ProgressTableContainer = (
 	graphQlQuery: DocumentNode,
-	metricsMap: (map: Record<string, number>) => ProgressTableData
+	metricsMap: (metrics: Record<string, ActivityMetrics>) => ProgressTableData
 ) => {
 	const { loading, error, data, refetch } = useQuery(graphQlQuery, {
 		variables: { forceRefresh: false }

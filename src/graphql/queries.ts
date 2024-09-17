@@ -31,9 +31,9 @@ export const GET_MIND_AND_BODY_METRICS = gql`
 	query GetInboxCounts($forceRefresh: Boolean!) {
 		sources {
 			calendar(forceRefresh: $forceRefresh) {
-				running_total_sessions
-				weight_training_total_sessions
-				meditation_total_hours
+				running { total_sessions }
+				weight_training { total_sessions }
+				meditation { total_hours }
 			}
 		}
 	}
