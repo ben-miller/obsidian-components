@@ -11,10 +11,8 @@ function getCurrentDayOfWeek(): number {
 
 const data = () => [
 	{
-		name: 'Time',
-		children: [
-			{ name: 'day of week', current: getCurrentDayOfWeek(), total: 7 },
-		],
+		name: 'Time, day of week',
+		data: { current: getCurrentDayOfWeek(), total: 7 },
 	}
 ];
 

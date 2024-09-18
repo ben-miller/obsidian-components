@@ -1,11 +1,34 @@
 import React from 'react'
 import styled from 'styled-components';
 import {DotCountChart} from "../DotChart/DotCountChart";
-import {ProgressTableData, ProgressTableSection} from "../../../models/progressTableData";
+import {ProgressTableData, ProgressTableSectionData} from "../../../models/progressTableData";
+
+export const parseYamlToDotCountTableProps = (parsedData: any): ProgressTableProps | null => {
+	try {
+		// Type guard to validate the parsed data
+		const validateData = (data: any): data is ProgressTableProps => {
+			return (
+				typeof data === 'object' &&
+				Array.isArray(data.data) &&
+				typeof data.cols === 'number' &&
+				(typeof data.title === 'string' || typeof data.title === 'undefined')
+			);
+		};
+
+		if (validateData(parsedData)) {
+			return parsedData;
+		} else {
+			throw new Error('Invalid YAML format.');
+		}
+	} catch (error) {
+		console.error('Error parsing YAML:', error);
+		return null;
+	}
+};
 
 const Container = styled.div`
 	padding: 20px;
-	font-family: 'equity-caps', sans-serif;
+	font-family: 'equity-caps', serif;
 	text-transform: lowercase;
 	font-size: 17px;
 	max-width: 800px;
@@ -36,44 +59,21 @@ const ItemContainer = styled.div`
 	margin-bottom: 15px;
 `
 
-export const parseYamlToDotCountTableProps = (parsedData: any): ProgressTableProps | null => {
-	try {
-		// Type guard to validate the parsed data
-		const validateData = (data: any): data is ProgressTableProps => {
-			return (
-				typeof data === 'object' &&
-				Array.isArray(data.data) &&
-				typeof data.cols === 'number' &&
-				(typeof data.title === 'string' || typeof data.title === 'undefined')
-			);
-		};
-
-		if (validateData(parsedData)) {
-			return parsedData;
-		} else {
-			throw new Error('Invalid YAML format.');
-		}
-	} catch (error) {
-		console.error('Error parsing YAML:', error);
-		return null;
-	}
-};
-
-export const ProgressTableSectionComponent: React.FC<{
-	section: ProgressTableSection,
+export const ProgressTableSection: React.FC<{
+	section: ProgressTableSectionData,
 	sectionIndex: any,
 	cols: number
 }> = ({section, sectionIndex, cols}) => {
 	return <ItemContainer>
 		<LabelContainer>
-			<Label style={{ textAlign: 'right' }} key={sectionIndex} >
-				{section.name}, {section.children[0].name}
+			<Label key={sectionIndex} >
+				{section.name}
 			</Label>
 		</LabelContainer>
 		<Item key={sectionIndex}>
 			<DotCountChart
-				current={section.children[0].current}
-				total={section.children[0].total}
+				current={section.data.current}
+				total={section.data.total}
 				cols={cols}/>
 		</Item>
 	</ItemContainer>;
@@ -103,7 +103,7 @@ export const ProgressTable: React.FC<ProgressTableProps> = (
 			{title && <h2>{title}</h2>}
 			<MainComponent>
 				{data.map((section, sectionIndex) => (
-					<ProgressTableSectionComponent
+					<ProgressTableSection
 						section={section}
 						sectionIndex={sectionIndex}
 						cols={cols} />

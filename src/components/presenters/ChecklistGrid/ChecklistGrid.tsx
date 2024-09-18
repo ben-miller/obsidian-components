@@ -13,8 +13,8 @@ interface ChecklistGridDotProps extends DotProps {
 
 interface ChecklistGridProps {
 	title?: string;
-	data: ChecklistGridDotProps[];
-	statusClasses: Record<number, string>;
+	data?: ChecklistGridDotProps[];
+	statusClasses?: Record<number, string>;
 	cols?: number;
 	dotSize?: number;
 	dotGap?: number;

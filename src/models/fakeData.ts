@@ -5,50 +5,36 @@ export const fakeData = {
 	},
 	timeMetrics: [
 		{
-			name: 'Time',
-			children: [
-				{ name: 'day of week', current: 4, total: 7 },
-			],
+			name: 'Time, day of week',
+			data: { current: 4, total: 7 },
 		},
 	],
 	mindAndBodyMetrics: [
 		{
-			name: 'Running',
-			children: [
-				{ name: 'days this week', current: 3, total: 6 },
-			],
+			name: 'Running, days this week',
+			data: { current: 3, total: 6 },
 		},
 		{
-			name: 'Weight Training',
-			children: [
-				{ name: 'days this week', current: 2, total: 4 },
-			],
+			name: 'Weight Training, days this week',
+			data: { current: 2, total: 4 },
 		},
 		{
-			name: 'Meditation',
-			children: [
-				{ name: 'sessions this week', current: 7, total: 14 },
-			],
+			name: 'Meditation, sessions this week',
+			data: { current: 7, total: 14 },
 		},
 	],
 	jobSearchMetrics: [
 		{
-			name: 'Job applications',
-			children: [
-				{ name: 'sent this week', current: 0, total: 10 },
-			],
+			name: 'Job applications, sent this week',
+			data: { current: 3, total: 5 },
 		},
 		{
-			name: 'LeetCode',
-			children: [
-				{ name: 'problems this week', current: 3, total: 5 },
-			],
+			name: 'LeetCode, sessions this week',
+			data: { current: 3, total: 5 },
 		},
 		{
-			name: 'Dev Project',
-			children: [
-				{ name: 'hours this week', current: 13, total: 30 },
-			],
+			name: 'Dev Project, hours this week',
+			data: { current: 14, total: 30 },
 		},
 	]
 }
