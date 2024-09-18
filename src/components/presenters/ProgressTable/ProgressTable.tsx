@@ -27,7 +27,7 @@ export const parseYamlToDotCountTableProps = (parsedData: any): ProgressTablePro
 	}
 };
 
-const Container = styled.div`
+const SectionContainer = styled.div`
 	padding: 20px;
 	font-family: 'equity-caps', serif;
 	text-transform: lowercase;
@@ -36,25 +36,25 @@ const Container = styled.div`
 	min-width: 200px;
 `;
 
-const Label = styled.div`
+const SubSectionLabel = styled.div`
 `
 
-const LabelContainer = styled.div`
+const SubSectionLabelContainer = styled.div`
 	flex: 2;
 	display: flex;
 `
 
-const Item = styled.div`
+const SubSectionItem = styled.div`
 	flex: 3;
 	display: flex;
 	margin-top: 6px;
 `;
 
-const MainComponent = styled.div`
+const SubSectionsContainer = styled.div`
 	display: flex-block;
 `
 
-const ItemContainer = styled.div`
+const SubSectionContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 15px;
@@ -80,16 +80,16 @@ export const ProgressTableSection: React.FC<{
 		}
 	}
 
-	return <ItemContainer>
-		<LabelContainer>
-			<Label key={sectionIndex} >
+	return <SubSectionContainer>
+		<SubSectionLabelContainer>
+			<SubSectionLabel key={sectionIndex} >
 				{section.name}
-			</Label>
-		</LabelContainer>
-		<Item key={sectionIndex}>
+			</SubSectionLabel>
+		</SubSectionLabelContainer>
+		<SubSectionItem key={sectionIndex}>
 			{renderChart()}
-		</Item>
-	</ItemContainer>;
+		</SubSectionItem>
+	</SubSectionContainer>;
 }
 
 export interface ProgressTableProps {
@@ -112,16 +112,16 @@ export const ProgressTable: React.FC<ProgressTableProps> = (
 		className
 	}) => {
 	return (
-		<Container onDoubleClick={onDoubleClick} className={className}>
+		<SectionContainer onDoubleClick={onDoubleClick} className={className}>
 			{title && <h2>{title}</h2>}
-			<MainComponent>
+			<SubSectionsContainer>
 				{data.map((section, sectionIndex) => (
 					<ProgressTableSection
 						section={section}
 						sectionIndex={sectionIndex}
 						cols={cols} />
 				))}
-			</MainComponent>
-		</Container>
+			</SubSectionsContainer>
+		</SectionContainer>
 	);
 };
