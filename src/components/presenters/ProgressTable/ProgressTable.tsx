@@ -37,7 +37,7 @@ const ItemContainer = styled.div`
 	margin-bottom: 15px;
 `
 
-export interface DotCountTableProps {
+export interface ProgressTableProps {
 	className?: string;
 	title?: string;
 	data: ProgressTableData;
@@ -47,10 +47,10 @@ export interface DotCountTableProps {
 	onDoubleClick?: () => void;
 }
 
-export const parseYamlToDotCountTableProps = (parsedData: any): DotCountTableProps | null => {
+export const parseYamlToDotCountTableProps = (parsedData: any): ProgressTableProps | null => {
 	try {
 		// Type guard to validate the parsed data
-		const validateData = (data: any): data is DotCountTableProps => {
+		const validateData = (data: any): data is ProgressTableProps => {
 			return (
 				typeof data === 'object' &&
 				Array.isArray(data.data) &&
@@ -70,7 +70,7 @@ export const parseYamlToDotCountTableProps = (parsedData: any): DotCountTablePro
 	}
 };
 
-export const ProgressTable: React.FC<DotCountTableProps> = ({ title, data, cols = 10, dotSize = 20, dotGap = 16, onDoubleClick, className }) => {
+export const ProgressTable: React.FC<ProgressTableProps> = ({ title, data, cols = 10, dotSize = 20, dotGap = 16, onDoubleClick, className }) => {
 	const maxWidth = cols ? cols * dotSize + (cols - 1) * dotGap : undefined
 
 	return (

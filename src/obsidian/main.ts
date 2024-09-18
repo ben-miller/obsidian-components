@@ -1,7 +1,7 @@
 import {MarkdownPostProcessorContext, Plugin} from "obsidian";
 import {cleanupReactRoots, renderComponent} from "./obsidianRendering";
 import {
-	DotCountTableProps,
+	ProgressTableProps,
 	parseYamlToDotCountTableProps
 } from "../components/presenters/ProgressTable/ProgressTable";
 import yaml from "js-yaml";
@@ -9,7 +9,7 @@ import yaml from "js-yaml";
 interface ParsedYaml {
 	component: string;
 	title?: string;
-	data?: DotCountTableProps | null;
+	data?: ProgressTableProps | null;
 	cols?: number;
 }
 
@@ -18,7 +18,7 @@ const parseYaml = (yamlString: string): ParsedYaml | null => {
 		const parsed: any = yaml.load(yamlString);
 
 		if (typeof parsed === 'object' && parsed !== null && typeof parsed.component === 'string') {
-			let data: DotCountTableProps | null = null;
+			let data: ProgressTableProps | null = null;
 
 			if (parsed.component === 'ProgressTable') {
 				data = parseYamlToDotCountTableProps(parsed);
