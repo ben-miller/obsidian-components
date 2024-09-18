@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import {DotCountChart} from "../DotChart/DotCountChart";
-import {ProgressDisplayType, ProgressTableData} from "../../../models/progressTableData";
-import ProgressBar from "../ProgressBar/ProgressBar";
+import {ProgressTableData} from "../../../models/progressTableData";
 
 const Container = styled.div`
 	padding: 20px;
@@ -70,9 +69,7 @@ export const parseYamlToDotCountTableProps = (parsedData: any): ProgressTablePro
 	}
 };
 
-export const ProgressTable: React.FC<ProgressTableProps> = ({ title, data, cols = 10, dotSize = 20, dotGap = 16, onDoubleClick, className }) => {
-	const maxWidth = cols ? cols * dotSize + (cols - 1) * dotGap : undefined
-
+export const ProgressTable: React.FC<ProgressTableProps> = ({ title, data, cols = 10, onDoubleClick, className }) => {
 	return (
 		<Container onDoubleClick={onDoubleClick} className={className}>
 			{title && <h2>{title}</h2>}
@@ -85,17 +82,10 @@ export const ProgressTable: React.FC<ProgressTableProps> = ({ title, data, cols 
 							</Label>
 						</LabelContainer>
 						<Item key={sectionIndex}>
-							{section.children[0].type === ProgressDisplayType.Dots ?
-								<DotCountChart
-									current={section.children[0].current}
-									total={section.children[0].total}
-									cols={cols}/> :
-								<ProgressBar
-									completed={section.children[0].current}
-									total={section.children[0].total}
-									maxWidth={maxWidth}
-								/>
-							}
+							<DotCountChart
+								current={section.children[0].current}
+								total={section.children[0].total}
+								cols={cols}/>
 						</Item>
 					</ItemContainer>
 				))}

@@ -1,13 +1,7 @@
-export enum ProgressDisplayType {
-	Bar = "ProgressBar",
-	Dots = "Dots"
-}
-
 interface ProgressTableItem {
 	name: string;
 	current: number;
 	total: number;
-	type: ProgressDisplayType;
 }
 
 interface ProgressTableSection {

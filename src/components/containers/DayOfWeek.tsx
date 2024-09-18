@@ -1,5 +1,4 @@
 import {ProgressTable} from "../presenters/ProgressTable/ProgressTable";
-import {ProgressDisplayType} from "../../models/progressTableData";
 import React from "react";
 
 function getCurrentDayOfWeek(): number {
@@ -14,7 +13,7 @@ const data = () => [
 	{
 		name: 'Time',
 		children: [
-			{ name: 'day of week', current: getCurrentDayOfWeek(), total: 7, type: ProgressDisplayType.Dots },
+			{ name: 'day of week', current: getCurrentDayOfWeek(), total: 7 },
 		],
 	}
 ];
