@@ -20,11 +20,12 @@ export const DotCountChart: React.FC<DotChartProps> = (
 		dotGap = 16
 	}) => {
 	const data = new Array(total)
-		.fill(1, 0, current)
-		.fill(0, current, total)
+		.fill({ state: 1 }, 0, current)
+		.fill({ state: 0 }, current, total)
 	return <DotChart
 		title={title}
 		data={data}
+		statusClasses={{0: 'bg-primary-50', 1: 'bg-primary-dark'}}
 		cols={cols}
 		dotSize={dotSize}
 		dotGap={dotGap}
