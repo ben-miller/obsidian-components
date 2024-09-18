@@ -7,8 +7,7 @@ import {
 	SubSectionContainer,
 	SubSectionItem,
 	SubSectionLabel,
-	SubSectionLabelContainer,
-	SubSectionsContainer
+	SubSectionLabelContainer
 } from "../Section/sectionLayouts";
 
 export const parseYamlToDotCountTableProps = (parsedData: any): ProgressTableProps | null => {
@@ -56,11 +55,11 @@ export const ProgressTableSection: React.FC<{
 
 	return <SubSectionContainer>
 		<SubSectionLabelContainer>
-			<SubSectionLabel key={sectionIndex} >
+			<SubSectionLabel>
 				{section.name}
 			</SubSectionLabel>
 		</SubSectionLabelContainer>
-		<SubSectionItem key={sectionIndex}>
+		<SubSectionItem>
 			{renderChart()}
 		</SubSectionItem>
 	</SubSectionContainer>;
@@ -88,14 +87,12 @@ export const ProgressTable: React.FC<ProgressTableProps> = (
 	return (
 		<SectionContainer onDoubleClick={onDoubleClick} className={className}>
 			{title && <h2>{title}</h2>}
-			<SubSectionsContainer>
-				{data.map((section, sectionIndex) => (
-					<ProgressTableSection
-						section={section}
-						sectionIndex={sectionIndex}
-						cols={cols} />
-				))}
-			</SubSectionsContainer>
+			{data.map((section, sectionIndex) => (
+				<ProgressTableSection
+					section={section}
+					sectionIndex={sectionIndex}
+					cols={cols} />
+			))}
 		</SectionContainer>
 	);
 };
