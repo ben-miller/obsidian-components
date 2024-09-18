@@ -29,26 +29,124 @@ export const checklistGridData: ChecklistGridData = {
 		{
 			state: ChecklistGridState.TODO,
 			label: 'Github heat map'
-		},{
+		},
+		{
 			state: ChecklistGridState.TODO,
 			label: 'Stacked bar chart for summarizing time use'
-		},{
+		},
+		{
 			state: ChecklistGridState.DOING,
 			label: 'Checklist grid'
-		},{
+		},
+		{
 			state: ChecklistGridState.DONE,
 			label: 'Dot count chart'
-		},{
+		},
+		{
 			state: ChecklistGridState.TODO,
 			label: 'Day of year dot chart'
-		},{
+		},
+		{
 			state: ChecklistGridState.TODO,
 			label: 'Financial metrics'
-		},{
+		},
+		{
 			state: ChecklistGridState.TODO,
 			label: 'Skill tree'
+		},
+		{
+			state: ChecklistGridState.TODO,
+			label: 'Project documentation'
+		},
+		{
+			state: ChecklistGridState.DOING,
+			label: 'User authentication module'
+		},
+		{
+			state: ChecklistGridState.DONE,
+			label: 'Responsive layout design'
+		},
+		{
+			state: ChecklistGridState.TODO,
+			label: 'API integration tests'
+		},
+		{
+			state: ChecklistGridState.TODO,
+			label: 'Database schema optimization'
+		},
+		{
+			state: ChecklistGridState.TODO,
+			label: 'Bug fixing and improvements'
+		},
+		{
+			state: ChecklistGridState.TODO,
+			label: 'Performance testing'
+		},
+		{
+			state: ChecklistGridState.DOING,
+			label: 'Continuous integration setup'
+		},
+		{
+			state: ChecklistGridState.DONE,
+			label: 'Design system update'
+		},
+		{
+			state: ChecklistGridState.TODO,
+			label: 'Accessibility improvements'
+		},
+		{
+			state: ChecklistGridState.TODO,
+			label: 'SEO optimizations'
+		},
+		{
+			state: ChecklistGridState.TODO,
+			label: 'Code refactoring'
+		},
+		{
+			state: ChecklistGridState.DOING,
+			label: 'Unit testing for components'
+		},
+		{
+			state: ChecklistGridState.DONE,
+			label: 'Project deployment'
+		},
+		{
+			state: ChecklistGridState.TODO,
+			label: 'Team collaboration tools setup'
+		},
+		{
+			state: ChecklistGridState.TODO,
+			label: 'Error logging implementation'
+		},
+		{
+			state: ChecklistGridState.DOING,
+			label: 'Frontend state management'
+		},
+		{
+			state: ChecklistGridState.DONE,
+			label: 'Version control setup'
+		},
+		{
+			state: ChecklistGridState.TODO,
+			label: 'Security audit'
+		},
+		{
+			state: ChecklistGridState.TODO,
+			label: 'Mobile responsiveness'
+		},
+		{
+			state: ChecklistGridState.TODO,
+			label: 'Data migration strategy'
+		},
+		{
+			state: ChecklistGridState.TODO,
+			label: 'Backup and restore functionality'
+		},
+		{
+			state: ChecklistGridState.TODO,
+			label: 'Feature flagging system'
 		}
-	],
+	]
 }
 
 export const jobSearchMetrics: ProgressTableSectionData[] = [
@@ -64,9 +162,5 @@ export const jobSearchMetrics: ProgressTableSectionData[] = [
 		name: 'Dev Project, hours this week',
 		data: { type: 'DotCountData', current: 14, total: 30 },
 	},
-	{
-		name: 'Dev Project, tasks remaining',
-		data: checklistGridData
-	}
 ]
 
