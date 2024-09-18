@@ -7,6 +7,7 @@ import {fakeData} from "../models/fakeData";
 import {ProgressTable} from "./presenters/ProgressTable/ProgressTable";
 import {WeeklyKPIsView} from "../views/WeeklyKPIsView";
 import {MindAndBody} from "./containers/MindAndBody";
+import {ChecklistGrid} from "./presenters/ChecklistGrid/ChecklistGrid";
 
 const routes = [
 	{ path: "/", name: "Inbox Counts", component: <InboxCountTable />, exact: true },
@@ -17,6 +18,7 @@ const routes = [
 	{ path: "/progresss_table", name: "Progress Table", component: <ProgressTable title="Progress table" data={fakeData.mindAndBodyMetrics} cols={5} /> },
 	{ path: "/weekly_kpis", name: "Weekly KPis", component: <WeeklyKPIsView /> },
 	{ path: "/mind_and_body", name: "Mind & Body", component: <MindAndBody /> },
+	{ path: "/checklist_grid", name: "Checklist Grid", component: <ChecklistGrid /> },
 ];
 
 const Navbar = () => (
