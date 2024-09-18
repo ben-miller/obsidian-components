@@ -4,7 +4,7 @@ interface ProgressTableItem {
 	total: number;
 }
 
-interface ProgressTableSection {
+export interface ProgressTableSection {
 	name: string;
 	children: ProgressTableItem[];
 }

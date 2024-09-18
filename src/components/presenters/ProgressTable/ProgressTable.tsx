@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import {DotCountChart} from "../DotChart/DotCountChart";
-import {ProgressTableData} from "../../../models/progressTableData";
+import {ProgressTableData, ProgressTableSection} from "../../../models/progressTableData";
 
 const Container = styled.div`
 	padding: 20px;
@@ -36,16 +36,6 @@ const ItemContainer = styled.div`
 	margin-bottom: 15px;
 `
 
-export interface ProgressTableProps {
-	className?: string;
-	title?: string;
-	data: ProgressTableData;
-	cols: number;
-	dotSize?: number;
-	dotGap?: number;
-	onDoubleClick?: () => void;
-}
-
 export const parseYamlToDotCountTableProps = (parsedData: any): ProgressTableProps | null => {
 	try {
 		// Type guard to validate the parsed data
@@ -69,25 +59,54 @@ export const parseYamlToDotCountTableProps = (parsedData: any): ProgressTablePro
 	}
 };
 
-export const ProgressTable: React.FC<ProgressTableProps> = ({ title, data, cols = 10, onDoubleClick, className }) => {
+export const ProgressTableSectionComponent: React.FC<{
+	section: ProgressTableSection,
+	sectionIndex: any,
+	cols: number
+}> = ({section, sectionIndex, cols}) => {
+	return <ItemContainer>
+		<LabelContainer>
+			<Label style={{ textAlign: 'right' }} key={sectionIndex} >
+				{section.name}, {section.children[0].name}
+			</Label>
+		</LabelContainer>
+		<Item key={sectionIndex}>
+			<DotCountChart
+				current={section.children[0].current}
+				total={section.children[0].total}
+				cols={cols}/>
+		</Item>
+	</ItemContainer>;
+}
+
+export interface ProgressTableProps {
+	className?: string;
+	title?: string;
+	data: ProgressTableData;
+	cols: number;
+	dotSize?: number;
+	dotGap?: number;
+	onDoubleClick?: () => void;
+	children?: React.ReactNode;
+}
+
+export const ProgressTable: React.FC<ProgressTableProps> = (
+	{
+		title,
+		data,
+		cols = 10,
+		onDoubleClick,
+		className
+	}) => {
 	return (
 		<Container onDoubleClick={onDoubleClick} className={className}>
 			{title && <h2>{title}</h2>}
 			<MainComponent>
 				{data.map((section, sectionIndex) => (
-					<ItemContainer>
-						<LabelContainer>
-							<Label style={{ textAlign: 'right' }} key={sectionIndex} >
-								{section.name}, {section.children[0].name}
-							</Label>
-						</LabelContainer>
-						<Item key={sectionIndex}>
-							<DotCountChart
-								current={section.children[0].current}
-								total={section.children[0].total}
-								cols={cols}/>
-						</Item>
-					</ItemContainer>
+					<ProgressTableSectionComponent
+						section={section}
+						sectionIndex={sectionIndex}
+						cols={cols} />
 				))}
 			</MainComponent>
 		</Container>
