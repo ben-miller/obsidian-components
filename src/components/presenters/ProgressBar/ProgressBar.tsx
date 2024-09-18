@@ -26,7 +26,16 @@ const ProgressText = styled.span`
 	font-weight: bold;
 `;
 
-const ProgressBar: React.FC<{ completed: number, total: number, maxWidth?: number }> = ({ completed, total, maxWidth }) => {
+const ProgressBar: React.FC<{
+	completed: number,
+	total: number,
+	maxWidth?: number
+}> = (
+	{
+		completed,
+		total,
+		maxWidth
+	}) => {
 	return <Progress className={'bg-primary-25'} maxWidth={maxWidth}>
 		<ProgressFill
 			percentage={Math.round(100 * completed / total)}
