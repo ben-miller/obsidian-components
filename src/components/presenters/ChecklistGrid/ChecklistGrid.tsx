@@ -12,7 +12,6 @@ export interface ChecklistGridDotProps extends DotProps {
 }
 
 interface ChecklistGridProps {
-	title?: string;
 	data: ChecklistGridDotProps[];
 	statusClasses?: Record<number, string>;
 	cols?: number;
@@ -22,7 +21,6 @@ interface ChecklistGridProps {
 
 export const ChecklistGrid: React.FC<ChecklistGridProps> = (
 	{
-		title = 'Project Checklist',
 		data,
 		statusClasses = {
 			[ChecklistGridState.TODO]: 'bg-primary-50',
@@ -34,7 +32,6 @@ export const ChecklistGrid: React.FC<ChecklistGridProps> = (
 		dotGap = 16
 	}) => {
 	return <DotChart
-		title={title}
 		data={data}
 		statusClasses={statusClasses}
 		cols={cols}
