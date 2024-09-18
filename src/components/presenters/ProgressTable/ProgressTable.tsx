@@ -1,8 +1,15 @@
 import React from 'react'
-import styled from 'styled-components';
 import {DotCountChart} from "../DotChart/DotCountChart";
 import {ProgressTableData, ProgressTableSectionData} from "../../../models/progressTableData";
 import {ChecklistGrid} from "../ChecklistGrid/ChecklistGrid";
+import {
+	SectionContainer,
+	SubSectionContainer,
+	SubSectionItem,
+	SubSectionLabel,
+	SubSectionLabelContainer,
+	SubSectionsContainer
+} from "../Section/sectionLayouts";
 
 export const parseYamlToDotCountTableProps = (parsedData: any): ProgressTableProps | null => {
 	try {
@@ -26,39 +33,6 @@ export const parseYamlToDotCountTableProps = (parsedData: any): ProgressTablePro
 		return null;
 	}
 };
-
-const SectionContainer = styled.div`
-	padding: 20px;
-	font-family: 'equity-caps', serif;
-	text-transform: lowercase;
-	font-size: 17px;
-	max-width: 800px;
-	min-width: 200px;
-`;
-
-const SubSectionLabel = styled.div`
-`
-
-const SubSectionLabelContainer = styled.div`
-	flex: 2;
-	display: flex;
-`
-
-const SubSectionItem = styled.div`
-	flex: 3;
-	display: flex;
-	margin-top: 6px;
-`;
-
-const SubSectionsContainer = styled.div`
-	display: flex-block;
-`
-
-const SubSectionContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	margin-bottom: 15px;
-`
 
 export const ProgressTableSection: React.FC<{
 	section: ProgressTableSectionData,
