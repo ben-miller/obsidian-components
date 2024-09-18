@@ -5,15 +5,15 @@ import {ActivityMetrics, ProgressTableContainer} from "./shared/ProgressTableCon
 const metricsMap = (metrics: Record<string, ActivityMetrics>): ProgressTableData => [
 	{
 		name: 'Running, sessions this week',
-		data: { current: metrics.running.total_sessions, total: 6 },
+		data: { type: 'DotCountData', current: metrics.running.total_sessions, total: 6 },
 	},
 	{
 		name: 'Weight Training, sessions this week',
-		data: { current: metrics.weight_training.total_sessions, total: 4 },
+		data: { type: 'DotCountData', current: metrics.weight_training.total_sessions, total: 4 },
 	},
 	{
 		name: 'Meditation, hours this week',
-		data: { current: metrics.meditation.total_hours, total: 14 },
+		data: { type: 'DotCountData', current: metrics.meditation.total_hours, total: 14 },
 	},
 ]
 

@@ -1,9 +1,9 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {BrowserRouter as Router, Link, Route, Routes} from "react-router-dom";
 import InboxCountTable from "./containers/InboxCountTable";
 import QuoteComponent from "./presenters/QuoteComponent/QuoteComponent";
 import {DotCountChart} from "./presenters/DotChart/DotCountChart";
-import {fakeData} from "../models/fakeData";
+import {checklistGridData, fakeData, mindAndBodyMetrics} from "../models/fakeData";
 import {ProgressTable} from "./presenters/ProgressTable/ProgressTable";
 import {WeeklyKPIsView} from "../views/WeeklyKPIsView";
 import {MindAndBody} from "./containers/MindAndBody";
@@ -14,11 +14,11 @@ const routes = [
 	{ path: "/quote", name: "Quote", component: <QuoteComponent {...fakeData.quotation} /> },
 	{ path: "/progress", name: "Progress", component: <progress value={0.6} /> },
 	{ path: "/dotchart", name: "Dot Chart", component: <DotCountChart title={"Dot Chart"} current={42} total={100} cols={10}/> },
-	{ path: "/days_in_year", name: "Days in Year", component: <ProgressTable title="Dot count table" data={fakeData.mindAndBodyMetrics} cols={5} /> },
-	{ path: "/progresss_table", name: "Progress Table", component: <ProgressTable title="Progress table" data={fakeData.mindAndBodyMetrics} cols={5} /> },
+	{ path: "/days_in_year", name: "Days in Year", component: <ProgressTable title="Dot count table" data={mindAndBodyMetrics} cols={5} /> },
+	{ path: "/progresss_table", name: "Progress Table", component: <ProgressTable title="Progress table" data={mindAndBodyMetrics} cols={5} /> },
 	{ path: "/weekly_kpis", name: "Weekly KPis", component: <WeeklyKPIsView /> },
 	{ path: "/mind_and_body", name: "Mind & Body", component: <MindAndBody /> },
-	{ path: "/checklist_grid", name: "Checklist Grid", component: <ChecklistGrid /> },
+	{ path: "/checklist_grid", name: "Checklist Grid", component: <ChecklistGrid data={checklistGridData.data} /> },
 ];
 
 const Navbar = () => (

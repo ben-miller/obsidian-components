@@ -1,19 +1,19 @@
 import React from "react";
 import {DotChart, DotProps} from "../DotChart/DotChart";
 
-enum ChecklistGridState {
+export enum ChecklistGridState {
 	TODO = 0,
 	DOING = 1,
 	DONE = 2
 }
 
-interface ChecklistGridDotProps extends DotProps {
+export interface ChecklistGridDotProps extends DotProps {
 	label: string;
 }
 
 interface ChecklistGridProps {
 	title?: string;
-	data?: ChecklistGridDotProps[];
+	data: ChecklistGridDotProps[];
 	statusClasses?: Record<number, string>;
 	cols?: number;
 	dotSize?: number;
@@ -23,29 +23,7 @@ interface ChecklistGridProps {
 export const ChecklistGrid: React.FC<ChecklistGridProps> = (
 	{
 		title = 'Project Checklist',
-		data = [
-			{
-				state: ChecklistGridState.TODO,
-				label: 'Github heat map'
-			},{
-				state: ChecklistGridState.TODO,
-				label: 'Stacked bar chart for summarizing time use'
-			},{
-				state: ChecklistGridState.DOING,
-				label: 'Checklist grid'
-			},{
-				state: ChecklistGridState.DONE,
-				label: 'Dot count chart'
-			},{
-				state: ChecklistGridState.TODO,
-				label: 'Day of year dot chart'
-			},{
-				state: ChecklistGridState.TODO,
-				label: 'Financial metrics'
-			},{
-				state: ChecklistGridState.TODO,
-				label: 'Skill tree'
-			}],
+		data,
 		statusClasses = {
 			[ChecklistGridState.TODO]: 'bg-primary-50',
 			[ChecklistGridState.DOING]: 'bg-secondary-dark',

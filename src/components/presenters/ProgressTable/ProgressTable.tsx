@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import {DotCountChart} from "../DotChart/DotCountChart";
 import {ProgressTableData, ProgressTableSectionData} from "../../../models/progressTableData";
+import {ChecklistGrid} from "../ChecklistGrid/ChecklistGrid";
 
 export const parseYamlToDotCountTableProps = (parsedData: any): ProgressTableProps | null => {
 	try {
@@ -64,6 +65,21 @@ export const ProgressTableSection: React.FC<{
 	sectionIndex: any,
 	cols: number
 }> = ({section, sectionIndex, cols}) => {
+	const renderChart = () => {
+		switch(section.data.type) {
+			case "ChecklistGridData":
+				return <ChecklistGrid
+					data={section.data.data}
+				/>
+			case 'DotCountData':
+			default:
+				return <DotCountChart
+					current={section.data.current}
+					total={section.data.total}
+					cols={cols}/>
+		}
+	}
+
 	return <ItemContainer>
 		<LabelContainer>
 			<Label key={sectionIndex} >
@@ -71,10 +87,7 @@ export const ProgressTableSection: React.FC<{
 			</Label>
 		</LabelContainer>
 		<Item key={sectionIndex}>
-			<DotCountChart
-				current={section.data.current}
-				total={section.data.total}
-				cols={cols}/>
+			{renderChart()}
 		</Item>
 	</ItemContainer>;
 }
