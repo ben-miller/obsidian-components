@@ -7,6 +7,7 @@ import {ProgressTable} from "../components/presenters/ProgressTable/ProgressTabl
 import {DayOfWeek} from "../components/containers/DayOfWeek";
 import {MindAndBody} from "../components/containers/MindAndBody";
 import {JobSearchProgress} from "../components/containers/JobSearchProgress";
+import {DevProjectTasks} from "../components/containers/DevProjectTasks";
 
 const roots: Map<Element, Root> = new Map();
 
@@ -23,6 +24,8 @@ const RenderedComponent: React.FC<{ componentName: string, props?: any }> = ({ c
 			return <MindAndBody />
 		case 'JobSearchProgress':
 			return <JobSearchProgress />
+		case 'DevProjectTasks':
+			return <DevProjectTasks />
 
 		/**
 		 * Configured by YAML.

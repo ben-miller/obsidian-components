@@ -42,6 +42,7 @@ export const ProgressTableSection: React.FC<{
 		switch(section.data.type) {
 			case "ChecklistGridData":
 				return <ChecklistGrid
+					title={section.name}
 					data={section.data.data}
 				/>
 			case 'DotCountData':
@@ -84,8 +85,7 @@ export const ProgressTable: React.FC<ProgressTableProps> = (
 		onDoubleClick,
 		className
 	}) => {
-	return (
-		<SectionContainer onDoubleClick={onDoubleClick} className={className}>
+	return <SectionContainer onDoubleClick={onDoubleClick} className={className}>
 			{title && <h2>{title}</h2>}
 			{data.map((section, sectionIndex) => (
 				<ProgressTableSection
@@ -94,5 +94,4 @@ export const ProgressTable: React.FC<ProgressTableProps> = (
 					cols={cols} />
 			))}
 		</SectionContainer>
-	);
 };
