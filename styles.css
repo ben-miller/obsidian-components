@@ -236,9 +236,19 @@
   border-width: 1px;
 }
 
+.bg-primary-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 191 175 / var(--tw-bg-opacity));
+}
+
 .bg-primary-25 {
   --tw-bg-opacity: 1;
   background-color: rgb(255 245 242 / var(--tw-bg-opacity));
+}
+
+.bg-primary-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 142 130 / var(--tw-bg-opacity));
 }
 
 .bg-primary-50 {
@@ -305,4 +315,10 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.dot-in-progress {
+  border-width: 2px;
+  border-style: solid;
+  box-sizing: border-box;
 }

@@ -32,8 +32,8 @@ export const ChecklistGrid: React.FC<ChecklistGridProps> = (
 		title,
 		data,
 		statusClasses = {
-			[ChecklistGridState.TODO]: 'bg-primary-50',
-			[ChecklistGridState.DOING]: 'bg-secondary-dark',
+			[ChecklistGridState.TODO]: 'bg-primary-25',
+			[ChecklistGridState.DOING]: 'bg-primary-200 dot-in-progress',
 			[ChecklistGridState.DONE]: 'bg-primary-400'
 		},
 		cols = 10,
