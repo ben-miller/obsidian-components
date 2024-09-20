@@ -1,25 +1,12 @@
-import React from "react";
+import React, {useRef, useState} from "react";
 import styled from "styled-components"
 import classNames from 'classnames';
+import {DotChartTooltip} from "./DotChartToolTip";
 
 export interface DotProps {
 	state: number;
 	label?: string;
 }
-
-const DotLabel = styled.span`
-	position: relative;
-	visibility: hidden;
-	cursor: default;
-	display: inline-block;
-	white-space: nowrap;
-	top: 30px;
-	font-size: 20px;
-	background-color: white;
-	border-radius: 3px;
-	padding: 3px;
-	border: 1px solid;
-`
 
 const Dot = styled.div<{
 	dotSize: number;
@@ -28,10 +15,6 @@ const Dot = styled.div<{
 	height: ${({ dotSize }) => dotSize}px;
 	border-radius: 50%;
 	transition: background-color 0.3s ease;
-	&:hover ${DotLabel} {
-		visibility: visible;
-		opacity: 1;
-	}
 `;
 
 const DotContainer = styled.div<{ dotMargin: number; }>`
@@ -59,8 +42,26 @@ export const DotChart: React.FC<DotChartProps> = (
 		dotSize = 20,
 		dotGap = 16
 	}) => {
+	const [tooltip, setTooltip] = useState<{ label: string; x: number; y: number } | null>(null);
+	const dotRefs = useRef<(HTMLDivElement | null)[]>([]);
 
 	const maxWidth = cols ? cols * dotSize + (cols - 1) * dotGap : undefined
+
+	const handleMouseEnter = (index: number, label?: string) => {
+		if (!label) return;
+		const dotElement = dotRefs.current[index];
+		if (dotElement) {
+			const rect = dotElement.getBoundingClientRect();
+			const tooltipX = rect.left + rect.width / 2 + 6;
+			const tooltipY = rect.top + 10;
+
+			setTooltip({ label, x: tooltipX, y: tooltipY });
+		}
+	};
+
+	const handleMouseLeave = () => {
+		setTooltip(null);
+	};
 
 	return (
 		<div>
@@ -74,11 +75,20 @@ export const DotChart: React.FC<DotChartProps> = (
 						dotSize={dotSize}
 						className={classNames(
 							statusClasses[active.state]
-						)}>
-						{active.label && <DotLabel>{active.label}</DotLabel>}
+						)}
+						onMouseEnter={() => handleMouseEnter(index, active.label)}
+						onMouseLeave={handleMouseLeave}
+						ref={(el: HTMLDivElement | null) => (dotRefs.current[index] = el)}
+					>
+						{/*{active.label && <DotLabel>{active.label}</DotLabel>}*/}
 					</Dot>
 				))}
 			</DotContainer>
+			{tooltip && (
+				<DotChartTooltip x={tooltip.x} y={tooltip.y}>
+					{tooltip.label}
+				</DotChartTooltip>
+			)}
 		</div>
 	)
 };
