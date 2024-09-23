@@ -43,7 +43,6 @@ export const ProgressTableSection: React.FC<{
 			case "ChecklistGridData":
 				return <ChecklistGrid
 					title={section.name}
-					data={section.data.data}
 				/>
 			case 'DotCountData':
 			default:

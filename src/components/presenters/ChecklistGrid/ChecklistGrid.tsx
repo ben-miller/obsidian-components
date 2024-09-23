@@ -2,15 +2,32 @@ import React from "react";
 import {DotChart, DotProps} from "../DotChart/DotChart";
 import {
 	SectionContainer,
-	SubSectionContainer, SubSectionItem,
+	SubSectionContainer,
+	SubSectionItem,
 	SubSectionLabel,
 	SubSectionLabelContainer
 } from "../Section/sectionLayouts";
+import {useQuery} from "@apollo/client";
+import {GET_ORG_MODE_TODO} from "../../../graphql/queries";
 
 export enum ChecklistGridState {
 	TODO = 0,
 	DOING = 1,
 	DONE = 2
+}
+
+export namespace ChecklistGridState {
+	export function fromString(state: string): ChecklistGridState {
+		switch (state.toUpperCase()) {
+			case 'DOING':
+				return ChecklistGridState.DOING;
+			case 'DONE':
+				return ChecklistGridState.DONE;
+			case 'TODO':
+			default:
+				return ChecklistGridState.TODO;
+		}
+	}
 }
 
 export interface ChecklistGridDotProps extends DotProps {
@@ -19,7 +36,6 @@ export interface ChecklistGridDotProps extends DotProps {
 
 interface ChecklistGridProps {
 	title: string;
-	data: ChecklistGridDotProps[];
 	statusClasses?: Record<number, string>;
 	cols?: number;
 	dotSize?: number;
@@ -30,7 +46,6 @@ interface ChecklistGridProps {
 export const ChecklistGrid: React.FC<ChecklistGridProps> = (
 	{
 		title,
-		data,
 		statusClasses = {
 			[ChecklistGridState.TODO]: 'bg-primary-25',
 			[ChecklistGridState.DOING]: 'bg-primary-200 dot-in-progress',
@@ -41,7 +56,18 @@ export const ChecklistGrid: React.FC<ChecklistGridProps> = (
 		dotGap = 16,
 		className
 	}) => {
-	const doing = data.filter(item => item.state === ChecklistGridState.DOING);
+	const { loading, error, data, refetch } = useQuery(GET_ORG_MODE_TODO, {
+		variables: { forceRefresh: true }
+	});
+
+	if (loading) return <p>Loading...</p>;
+	if (error) return <p>Error loading data</p>;
+
+	const tasks = data.sources.org_mode.project_tasks.map((item: { state: string, label: string }) => {
+		return { state: ChecklistGridState.fromString(item.state), label: item.label }
+	})
+	const doing: ChecklistGridDotProps[] = tasks.filter((item: { state: ChecklistGridState; }) => item.state === ChecklistGridState.DOING);
+
 	return <SectionContainer className={className}>
 		{title && <h2>{title}</h2>}
 		<SubSectionContainer>
@@ -52,7 +78,7 @@ export const ChecklistGrid: React.FC<ChecklistGridProps> = (
 			</SubSectionLabelContainer>
 			<SubSectionItem>
 				<DotChart
-					data={data}
+					data={tasks}
 					statusClasses={statusClasses}
 					cols={cols}
 					dotSize={dotSize}

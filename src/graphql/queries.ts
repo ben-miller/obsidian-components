@@ -38,6 +38,7 @@ export const GET_MIND_AND_BODY_METRICS = gql`
 		}
 	}
 `
+
 export const GET_JOB_SEARCH_METRICS = gql`
 	query GetInboxCounts($forceRefresh: Boolean!) {
 		sources {
@@ -45,6 +46,19 @@ export const GET_JOB_SEARCH_METRICS = gql`
 				dev { total_hours }
 				job_search{ total_sessions }
 				leet_code { total_sessions }
+			}
+		}
+	}
+`
+
+export const GET_ORG_MODE_TODO = gql`
+	query GetInboxCounts($forceRefresh: Boolean!) {
+		sources {
+			org_mode(forceRefresh: $forceRefresh) {
+				project_tasks {
+					label
+					state
+				}
 			}
 		}
 	}

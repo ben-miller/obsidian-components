@@ -1,8 +1,7 @@
 import React from 'react';
-import { Root, createRoot } from "react-dom/client";
+import {createRoot, Root} from "react-dom/client";
 import InboxCountTable from "../components/containers/InboxCountTable";
 import ApolloProvider from "../graphql/ApolloProvider";
-import {fakeData} from "../models/fakeData";
 import {ProgressTable} from "../components/presenters/ProgressTable/ProgressTable";
 import {DayOfWeek} from "../components/containers/DayOfWeek";
 import {MindAndBody} from "../components/containers/MindAndBody";
