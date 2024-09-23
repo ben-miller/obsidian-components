@@ -12,8 +12,9 @@ import {GET_ORG_MODE_TODO} from "../../../graphql/queries";
 
 export enum ChecklistGridState {
 	TODO = 0,
-	DOING = 1,
-	DONE = 2
+	NEXT = 1,
+	DOING = 2,
+	DONE = 3
 }
 
 export namespace ChecklistGridState {
@@ -21,6 +22,8 @@ export namespace ChecklistGridState {
 		switch (state.toUpperCase()) {
 			case 'DOING':
 				return ChecklistGridState.DOING;
+			case 'NEXT':
+				return ChecklistGridState.NEXT;
 			case 'DONE':
 				return ChecklistGridState.DONE;
 			case 'TODO':
@@ -48,7 +51,8 @@ export const ChecklistGrid: React.FC<ChecklistGridProps> = (
 		title,
 		statusClasses = {
 			[ChecklistGridState.TODO]: 'bg-primary-25',
-			[ChecklistGridState.DOING]: 'bg-primary-200 dot-in-progress',
+			[ChecklistGridState.NEXT]: 'bg-primary-200 dot-task-next',
+			[ChecklistGridState.DOING]: 'bg-primary-200 dot-task-doing',
 			[ChecklistGridState.DONE]: 'bg-primary-400'
 		},
 		cols = 10,
@@ -67,6 +71,9 @@ export const ChecklistGrid: React.FC<ChecklistGridProps> = (
 		return { state: ChecklistGridState.fromString(item.state), label: item.label }
 	})
 	const doing: ChecklistGridDotProps[] = tasks.filter((item: { state: ChecklistGridState; }) => item.state === ChecklistGridState.DOING);
+	console.log('data:', data)
+	const next: ChecklistGridDotProps[] = tasks.filter((item: { state: ChecklistGridState; }) => item.state === ChecklistGridState.NEXT);
+	console.log("next:", next)
 
 	return <SectionContainer className={className}>
 		{title && <h2>{title}</h2>}
@@ -100,6 +107,24 @@ export const ChecklistGrid: React.FC<ChecklistGridProps> = (
 						))
 					) : (
 						<li>No items in progress</li>
+					)}
+				</ul>
+			</SubSectionItem>
+		</SubSectionContainer>
+		<SubSectionContainer>
+			<SubSectionLabelContainer>
+				<SubSectionLabel>
+					Upcoming
+				</SubSectionLabel>
+			</SubSectionLabelContainer>
+			<SubSectionItem>
+				<ul>
+					{next.length > 0 ? (
+						next.map((item, index) => (
+							<li key={index}>{item.label}</li>
+						))
+					) : (
+						<li>No upcoming items</li>
 					)}
 				</ul>
 			</SubSectionItem>

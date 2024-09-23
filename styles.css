@@ -317,8 +317,14 @@ code {
     monospace;
 }
 
-.dot-in-progress {
+.dot-task-doing {
   border-width: 2px;
+  border-style: solid;
+  box-sizing: border-box;
+}
+
+.dot-task-next {
+  border-width: 1px;
   border-style: solid;
   box-sizing: border-box;
 }
