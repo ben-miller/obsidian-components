@@ -16,7 +16,6 @@ export const DotChartTooltipWrapper = styled.div<DotChartTooltipProps>`
 	padding: 5px;
 	border-radius: 3px;
 	white-space: nowrap;
-	z-index: 9999; /* Adjust as needed */
 	pointer-events: none;
 	opacity: 1;
 	border: 1px solid;
