@@ -106,28 +106,30 @@ export const ChecklistGrid: React.FC<ChecklistGridProps> = (
 							<li key={index}>{item.label}</li>
 						))
 					) : (
-						<li>No items in progress</li>
+						<li>(No items in progress)</li>
 					)}
 				</ul>
 			</SubSectionItem>
 		</SubSectionContainer>
-		<SubSectionContainer>
-			<SubSectionLabelContainer>
-				<SubSectionLabel>
-					Upcoming
-				</SubSectionLabel>
-			</SubSectionLabelContainer>
-			<SubSectionItem>
-				<ul>
-					{next.length > 0 ? (
-						next.map((item, index) => (
-							<li key={index}>{item.label}</li>
-						))
-					) : (
-						<li>No upcoming items</li>
-					)}
-				</ul>
-			</SubSectionItem>
-		</SubSectionContainer>
+		{ next.length > 0 &&
+			<SubSectionContainer>
+				<SubSectionLabelContainer>
+					<SubSectionLabel>
+						Upcoming
+					</SubSectionLabel>
+				</SubSectionLabelContainer>
+				<SubSectionItem>
+					<ul>
+						{next.length > 0 ? (
+							next.map((item, index) => (
+								<li key={index}>{item.label}</li>
+							))
+						) : (
+							<li>No upcoming items</li>
+						)}
+					</ul>
+				</SubSectionItem>
+			</SubSectionContainer>
+		}
 	</SectionContainer>
 };
