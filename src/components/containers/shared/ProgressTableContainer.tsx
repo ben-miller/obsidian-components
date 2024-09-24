@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import styled from "styled-components";
 import {ProgressTable} from "../../presenters/ProgressTable/ProgressTable";
 import {ProgressTableData} from "../../../models/progressTableData";
+import {useReloading} from "../../hooks/useReloading";
 
 export type ActivityMetrics = {
 	total_sessions: number,
@@ -17,26 +18,18 @@ export const ProgressTableContainer = (
 	graphQlQuery: DocumentNode,
 	metricsMap: (metrics: Record<string, ActivityMetrics>) => ProgressTableData
 ) => {
-	const { loading, error, data, refetch } = useQuery(graphQlQuery, {
+	const queryResult = useQuery(graphQlQuery, {
 		variables: { forceRefresh: false }
 	});
-	const [reloading, setReloading] = useState(false);
+	const { loading, error, data, refetch } = queryResult
+	const { reloading, reload } = useReloading(queryResult);
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error loading data</p>;
 
-	const handleReload = () => {
-		setReloading(true);
-		refetch({forceRefresh: true}).then(() => {
-			setReloading(false)
-		}).catch((error) => {
-			console.error('Error fetching data', error);
-		})
-	}
-
 	return <ProgressTableWithReloading
 		data={metricsMap(data.sources.calendar)}
-		onDoubleClick={handleReload}
+		onDoubleClick={() => reload({forceRefresh: true})}
 		cols={10}
 		reloading={reloading} />
 }

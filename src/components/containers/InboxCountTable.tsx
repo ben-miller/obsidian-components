@@ -3,16 +3,18 @@ import { useQuery } from "@apollo/client";
 import { GET_INBOX_COUNTS } from "../../graphql/queries";
 import {SimpleTable, SimpleTableData} from '../presenters/SimpleTable/SimpleTable';
 import styled from "styled-components";
+import {useReloading} from "../hooks/useReloading";
 
 const SimpleTableWithReloading = styled(SimpleTable)<{data: any, reloading: boolean}>`
 	${(props) => props.reloading ? 'opacity: 0.2' : ''};
 `
 
 const InboxCountTable: React.FC = () => {
-	const { loading, error, data, refetch } = useQuery(GET_INBOX_COUNTS, {
+	const queryResult = useQuery(GET_INBOX_COUNTS, {
 		variables: { forceRefresh: false }
 	});
-	const [reloading, setReloading] = useState(false);
+	const { loading, error, data } = queryResult;
+	const { reloading, reload } = useReloading(queryResult);
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error loading data</p>;
@@ -23,16 +25,6 @@ const InboxCountTable: React.FC = () => {
 			.replace(/_/g, ' ')
 			.replace(/\b\w/g, l => l.toUpperCase());
 	};
-
-	const handleReload = () => {
-		setReloading(true);
-		refetch({forceRefresh: true}).then((response) => {
-			console.log('data reloaded')
-			setReloading(false)
-		}).catch((error) => {
-			console.error('Error fetching data', error);
-		})
-	}
 
 	const formattedData: SimpleTableData = Object.keys(data.sources)
 		.filter(key => key !== '__typename')
@@ -52,7 +44,7 @@ const InboxCountTable: React.FC = () => {
 
 	return <SimpleTableWithReloading
 		data={formattedData}
-		onDoubleClick={handleReload}
+		onDoubleClick={() => reload({forceRefresh: true})}
 		reloading={reloading}
 	/>
 };
