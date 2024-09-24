@@ -5,7 +5,7 @@ import {SimpleTable, SimpleTableData} from '../presenters/SimpleTable/SimpleTabl
 import styled from "styled-components";
 import {useReloading} from "../hooks/useReloading";
 
-const SimpleTableWithReloading = styled(SimpleTable)<{data: any, reloading: boolean}>`
+const StyledSimpleTable = styled(SimpleTable)<{data: any, reloading: boolean}>`
 	${(props) => props.reloading ? 'opacity: 0.2' : ''};
 `
 
@@ -42,7 +42,7 @@ const InboxCountTable: React.FC = () => {
 			};
 		});
 
-	return <SimpleTableWithReloading
+	return <StyledSimpleTable
 		data={formattedData}
 		onDoubleClick={() => reload({forceRefresh: true})}
 		reloading={reloading}

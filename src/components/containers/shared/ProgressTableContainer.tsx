@@ -10,7 +10,7 @@ export type ActivityMetrics = {
 	total_hours: number
 }
 
-const ProgressTableWithReloading = styled(ProgressTable)<{data: any, reloading: boolean}>`
+const StyledProgressTable = styled(ProgressTable)<{data: any, reloading: boolean}>`
 	${(props) => props.reloading ? 'opacity: 0.2' : ''};
 `
 
@@ -27,7 +27,7 @@ export const ProgressTableContainer = (
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error loading data</p>;
 
-	return <ProgressTableWithReloading
+	return <StyledProgressTable
 		data={metricsMap(data.sources.calendar)}
 		onDoubleClick={() => reload({forceRefresh: true})}
 		cols={10}
