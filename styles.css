@@ -236,11 +236,6 @@
   border-width: 1px;
 }
 
-.bg-primary-200 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 191 175 / var(--tw-bg-opacity));
-}
-
 .bg-primary-25 {
   --tw-bg-opacity: 1;
   background-color: rgb(255 245 242 / var(--tw-bg-opacity));
@@ -259,6 +254,11 @@
 .bg-primary-dark {
   --tw-bg-opacity: 1;
   background-color: rgb(255 113 90 / var(--tw-bg-opacity));
+}
+
+.bg-secondary-dark {
+  --tw-bg-opacity: 1;
+  background-color: rgb(77 158 207 / var(--tw-bg-opacity));
 }
 
 .uppercase {
@@ -315,16 +315,4 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-.dot-task-doing {
-  border-width: 2px;
-  border-style: solid;
-  box-sizing: border-box;
-}
-
-.dot-task-next {
-  border-width: 1px;
-  border-style: solid;
-  box-sizing: border-box;
 }

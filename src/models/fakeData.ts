@@ -27,11 +27,11 @@ export const checklistGridData: ChecklistGridData = {
 	type: 'ChecklistGridData',
 	data: [
 		{
-			state: ChecklistGridState.TODO,
+			state: ChecklistGridState.SELECTED,
 			label: 'Github heat map'
 		},
 		{
-			state: ChecklistGridState.TODO,
+			state: ChecklistGridState.SELECTED,
 			label: 'Stacked bar chart for summarizing time use'
 		},
 		{
@@ -43,19 +43,19 @@ export const checklistGridData: ChecklistGridData = {
 			label: 'Dot count chart'
 		},
 		{
-			state: ChecklistGridState.TODO,
+			state: ChecklistGridState.SELECTED,
 			label: 'Day of year dot chart'
 		},
 		{
-			state: ChecklistGridState.TODO,
+			state: ChecklistGridState.SELECTED,
 			label: 'Financial metrics'
 		},
 		{
-			state: ChecklistGridState.TODO,
+			state: ChecklistGridState.SELECTED,
 			label: 'Skill tree'
 		},
 		{
-			state: ChecklistGridState.TODO,
+			state: ChecklistGridState.SELECTED,
 			label: 'Project documentation'
 		},
 		{
@@ -67,19 +67,19 @@ export const checklistGridData: ChecklistGridData = {
 			label: 'Responsive layout design'
 		},
 		{
-			state: ChecklistGridState.TODO,
+			state: ChecklistGridState.SELECTED,
 			label: 'API integration tests'
 		},
 		{
-			state: ChecklistGridState.TODO,
+			state: ChecklistGridState.SELECTED,
 			label: 'Database schema optimization'
 		},
 		{
-			state: ChecklistGridState.TODO,
+			state: ChecklistGridState.SELECTED,
 			label: 'Bug fixing and improvements'
 		},
 		{
-			state: ChecklistGridState.TODO,
+			state: ChecklistGridState.SELECTED,
 			label: 'Performance testing'
 		},
 		{
@@ -91,15 +91,15 @@ export const checklistGridData: ChecklistGridData = {
 			label: 'Design system update'
 		},
 		{
-			state: ChecklistGridState.TODO,
+			state: ChecklistGridState.SELECTED,
 			label: 'Accessibility improvements'
 		},
 		{
-			state: ChecklistGridState.TODO,
+			state: ChecklistGridState.SELECTED,
 			label: 'SEO optimizations'
 		},
 		{
-			state: ChecklistGridState.TODO,
+			state: ChecklistGridState.SELECTED,
 			label: 'Code refactoring'
 		},
 		{
@@ -111,11 +111,11 @@ export const checklistGridData: ChecklistGridData = {
 			label: 'Project deployment'
 		},
 		{
-			state: ChecklistGridState.TODO,
+			state: ChecklistGridState.SELECTED,
 			label: 'Team collaboration tools setup'
 		},
 		{
-			state: ChecklistGridState.TODO,
+			state: ChecklistGridState.SELECTED,
 			label: 'Error logging implementation'
 		},
 		{
@@ -127,23 +127,23 @@ export const checklistGridData: ChecklistGridData = {
 			label: 'Version control setup'
 		},
 		{
-			state: ChecklistGridState.TODO,
+			state: ChecklistGridState.SELECTED,
 			label: 'Security audit'
 		},
 		{
-			state: ChecklistGridState.TODO,
+			state: ChecklistGridState.SELECTED,
 			label: 'Mobile responsiveness'
 		},
 		{
-			state: ChecklistGridState.TODO,
+			state: ChecklistGridState.SELECTED,
 			label: 'Data migration strategy'
 		},
 		{
-			state: ChecklistGridState.TODO,
+			state: ChecklistGridState.SELECTED,
 			label: 'Backup and restore functionality'
 		},
 		{
-			state: ChecklistGridState.TODO,
+			state: ChecklistGridState.SELECTED,
 			label: 'Feature flagging system'
 		}
 	]

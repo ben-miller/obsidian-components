@@ -12,15 +12,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-.dot-task-doing {
-	border-width: 2px;
-	border-style: solid;
-	box-sizing: border-box;
-}
-
-.dot-task-next {
-	border-width: 1px;
-	border-style: solid;
-	box-sizing: border-box;
-}

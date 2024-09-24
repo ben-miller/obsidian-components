@@ -11,7 +11,7 @@ import {useQuery} from "@apollo/client";
 import {GET_ORG_MODE_TODO} from "../../../graphql/queries";
 
 export enum ChecklistGridState {
-	TODO = 0,
+	SELECTED = 0,
 	NEXT = 1,
 	DOING = 2,
 	DONE = 3
@@ -26,9 +26,9 @@ export namespace ChecklistGridState {
 				return ChecklistGridState.NEXT;
 			case 'DONE':
 				return ChecklistGridState.DONE;
-			case 'TODO':
+			case 'SELECTED':
 			default:
-				return ChecklistGridState.TODO;
+				return ChecklistGridState.SELECTED;
 		}
 	}
 }
@@ -50,9 +50,9 @@ export const ChecklistGrid: React.FC<ChecklistGridProps> = (
 	{
 		title,
 		statusClasses = {
-			[ChecklistGridState.TODO]: 'bg-primary-25',
-			[ChecklistGridState.NEXT]: 'bg-primary-200 dot-task-next',
-			[ChecklistGridState.DOING]: 'bg-primary-200 dot-task-doing',
+			[ChecklistGridState.SELECTED]: 'bg-primary-25',
+			[ChecklistGridState.NEXT]: 'bg-primary-50',
+			[ChecklistGridState.DOING]: 'bg-secondary-dark',
 			[ChecklistGridState.DONE]: 'bg-primary-400'
 		},
 		cols = 10,
@@ -70,8 +70,11 @@ export const ChecklistGrid: React.FC<ChecklistGridProps> = (
 	const tasks = data.sources.org_mode.project_tasks.map((item: { state: string, label: string }) => {
 		return { state: ChecklistGridState.fromString(item.state), label: item.label }
 	})
+	const selected: ChecklistGridDotProps[] = tasks.filter((item: { state: ChecklistGridState; }) => item.state === ChecklistGridState.SELECTED);
 	const doing: ChecklistGridDotProps[] = tasks.filter((item: { state: ChecklistGridState; }) => item.state === ChecklistGridState.DOING);
 	const next: ChecklistGridDotProps[] = tasks.filter((item: { state: ChecklistGridState; }) => item.state === ChecklistGridState.NEXT);
+	const done: ChecklistGridDotProps[] = tasks.filter((item: { state: ChecklistGridState; }) => item.state === ChecklistGridState.DONE);
+	const sortedData = done.concat(doing, next, selected)
 
 	return <SectionContainer className={className}>
 		{title && <h2>{title}</h2>}
@@ -83,7 +86,7 @@ export const ChecklistGrid: React.FC<ChecklistGridProps> = (
 			</SubSectionLabelContainer>
 			<SubSectionItem>
 				<DotChart
-					data={tasks}
+					data={sortedData}
 					statusClasses={statusClasses}
 					cols={cols}
 					dotSize={dotSize}
