@@ -9,7 +9,6 @@ import {
 } from "../Section/sectionLayouts";
 import {useQuery} from "@apollo/client";
 import {GET_ORG_MODE_TODO} from "../../../graphql/queries";
-import styled from "styled-components";
 import {useReloading} from "../../hooks/useReloading";
 
 export enum ChecklistGridState {
