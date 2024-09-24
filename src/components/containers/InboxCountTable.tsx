@@ -4,15 +4,15 @@ import { GET_INBOX_COUNTS } from "../../graphql/queries";
 import {SimpleTable, SimpleTableData} from '../presenters/SimpleTable/SimpleTable';
 import styled from "styled-components";
 
-const SimpleTableWithFlash = styled(SimpleTable)<{data: any, pulse: boolean}>`
-	${(props) => props.pulse ? 'opacity: 0.2' : ''};
+const SimpleTableWithReloading = styled(SimpleTable)<{data: any, reloading: boolean}>`
+	${(props) => props.reloading ? 'opacity: 0.2' : ''};
 `
 
 const InboxCountTable: React.FC = () => {
 	const { loading, error, data, refetch } = useQuery(GET_INBOX_COUNTS, {
 		variables: { forceRefresh: false }
 	});
-	const [pulse, setPulse] = useState(false);
+	const [reloading, setReloading] = useState(false);
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error loading data</p>;
@@ -25,10 +25,10 @@ const InboxCountTable: React.FC = () => {
 	};
 
 	const handleReload = () => {
-		setPulse(true);
+		setReloading(true);
 		refetch({forceRefresh: true}).then((response) => {
 			console.log('data reloaded')
-			setPulse(false)
+			setReloading(false)
 		}).catch((error) => {
 			console.error('Error fetching data', error);
 		})
@@ -50,7 +50,11 @@ const InboxCountTable: React.FC = () => {
 			};
 		});
 
-	return <SimpleTableWithFlash data={formattedData} onDoubleClick={handleReload} pulse={pulse}/>
+	return <SimpleTableWithReloading
+		data={formattedData}
+		onDoubleClick={handleReload}
+		reloading={reloading}
+	/>
 };
 
 export default InboxCountTable;

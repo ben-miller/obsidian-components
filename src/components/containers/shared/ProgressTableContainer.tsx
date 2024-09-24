@@ -9,8 +9,8 @@ export type ActivityMetrics = {
 	total_hours: number
 }
 
-const ProgressTableWithFlash = styled(ProgressTable)<{data: any, pulse: boolean}>`
-	${(props) => props.pulse ? 'opacity: 0.2' : ''};
+const ProgressTableWithReloading = styled(ProgressTable)<{data: any, reloading: boolean}>`
+	${(props) => props.reloading ? 'opacity: 0.2' : ''};
 `
 
 export const ProgressTableContainer = (
@@ -20,23 +20,23 @@ export const ProgressTableContainer = (
 	const { loading, error, data, refetch } = useQuery(graphQlQuery, {
 		variables: { forceRefresh: false }
 	});
-	const [pulse, setPulse] = useState(false);
+	const [reloading, setReloading] = useState(false);
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error loading data</p>;
 
 	const handleReload = () => {
-		setPulse(true);
+		setReloading(true);
 		refetch({forceRefresh: true}).then(() => {
-			setPulse(false)
+			setReloading(false)
 		}).catch((error) => {
 			console.error('Error fetching data', error);
 		})
 	}
 
-	return <ProgressTableWithFlash
+	return <ProgressTableWithReloading
 		data={metricsMap(data.sources.calendar)}
 		onDoubleClick={handleReload}
 		cols={10}
-		pulse={pulse} />
+		reloading={reloading} />
 }
