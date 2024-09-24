@@ -71,9 +71,7 @@ export const ChecklistGrid: React.FC<ChecklistGridProps> = (
 		return { state: ChecklistGridState.fromString(item.state), label: item.label }
 	})
 	const doing: ChecklistGridDotProps[] = tasks.filter((item: { state: ChecklistGridState; }) => item.state === ChecklistGridState.DOING);
-	console.log('data:', data)
 	const next: ChecklistGridDotProps[] = tasks.filter((item: { state: ChecklistGridState; }) => item.state === ChecklistGridState.NEXT);
-	console.log("next:", next)
 
 	return <SectionContainer className={className}>
 		{title && <h2>{title}</h2>}
