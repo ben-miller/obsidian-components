@@ -9,6 +9,8 @@ import {
 } from "../Section/sectionLayouts";
 import {useQuery} from "@apollo/client";
 import {GET_ORG_MODE_TODO} from "../../../graphql/queries";
+import styled from "styled-components";
+import {useReloading} from "../../hooks/useReloading";
 
 export enum ChecklistGridState {
 	SELECTED = 0,
@@ -60,9 +62,11 @@ export const ChecklistGrid: React.FC<ChecklistGridProps> = (
 		dotGap = 16,
 		className
 	}) => {
-	const { loading, error, data, refetch } = useQuery(GET_ORG_MODE_TODO, {
+	const queryResult = useQuery(GET_ORG_MODE_TODO, {
 		variables: { forceRefresh: true }
 	});
+	const { loading, error, data, refetch } = queryResult
+	const { reloading, reload } = useReloading(queryResult);
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error loading data</p>;
@@ -93,7 +97,10 @@ export const ChecklistGrid: React.FC<ChecklistGridProps> = (
 		</SubSectionContainer>
 	}
 
-	return <SectionContainer className={className}>
+	return <SectionContainer
+		className={className}
+		onDoubleClick={() => reload({forceRefresh: true})}
+	>
 		{title && <h2>{title}</h2>}
 		<SubSectionContainer>
 			<SubSectionLabelContainer>
