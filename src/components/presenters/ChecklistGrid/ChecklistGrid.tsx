@@ -74,7 +74,24 @@ export const ChecklistGrid: React.FC<ChecklistGridProps> = (
 	const doing: ChecklistGridDotProps[] = tasks.filter((item: { state: ChecklistGridState; }) => item.state === ChecklistGridState.DOING);
 	const next: ChecklistGridDotProps[] = tasks.filter((item: { state: ChecklistGridState; }) => item.state === ChecklistGridState.NEXT);
 	const done: ChecklistGridDotProps[] = tasks.filter((item: { state: ChecklistGridState; }) => item.state === ChecklistGridState.DONE);
-	const sortedData = done.concat(doing, next, selected)
+	const sortedData = [...done, ...doing, ...next, ...selected];
+
+	const sectionContainer = (title: string, items: ChecklistGridDotProps[]) => {
+		return <SubSectionContainer>
+			<SubSectionLabelContainer>
+				<SubSectionLabel>
+					{title}
+				</SubSectionLabel>
+			</SubSectionLabelContainer>
+			<SubSectionItem>
+				<ul>
+					{items.map((item, index) => (
+						<li key={index}>{item.label}</li>
+					))}
+				</ul>
+			</SubSectionItem>
+		</SubSectionContainer>
+	}
 
 	return <SectionContainer className={className}>
 		{title && <h2>{title}</h2>}
@@ -98,20 +115,3 @@ export const ChecklistGrid: React.FC<ChecklistGridProps> = (
 		{ next.length > 0 && sectionContainer("Upcoming", next) }
 	</SectionContainer>
 };
-
-const sectionContainer = (title: string, items: ChecklistGridDotProps[]) => {
-	return <SubSectionContainer>
-		<SubSectionLabelContainer>
-			<SubSectionLabel>
-				{title}
-			</SubSectionLabel>
-		</SubSectionLabelContainer>
-		<SubSectionItem>
-			<ul>
-				{items.map((item, index) => (
-					<li key={index}>{item.label}</li>
-				))}
-			</ul>
-		</SubSectionItem>
-	</SubSectionContainer>
-}
