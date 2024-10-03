@@ -4,8 +4,11 @@ export const GET_INBOX_COUNTS = gql`
     query GetInboxCounts($forceRefresh: Boolean!) {
         sources {
             obsidian(forceRefresh: $forceRefresh) {
-                inboxes
                 inbox_items
+				inbox_dir_size
+				journal_inbox_dir_size
+				administrivia_inbox_dir_size
+				desktop_dir_size
             }
             trello(forceRefresh: $forceRefresh) {
                 inbox_size
