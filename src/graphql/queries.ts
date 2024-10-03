@@ -17,7 +17,6 @@ export const GET_INBOX_COUNTS = gql`
                 uncategorized_tracks
             }
             org_mode(forceRefresh: $forceRefresh) {
-                inboxes
                 inbox_items
             }
             firefox(forceRefresh: $forceRefresh) {
