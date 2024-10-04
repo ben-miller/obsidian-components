@@ -15,7 +15,8 @@ export enum ChecklistGridState {
 	SELECTED = 0,
 	NEXT = 1,
 	DOING = 2,
-	DONE = 3
+	BUG = 3,
+	DONE = 4
 }
 
 export namespace ChecklistGridState {
@@ -25,6 +26,8 @@ export namespace ChecklistGridState {
 				return ChecklistGridState.DOING;
 			case 'NEXT':
 				return ChecklistGridState.NEXT;
+			case 'BUG':
+				return ChecklistGridState.BUG;
 			case 'DONE':
 				return ChecklistGridState.DONE;
 			case 'SELECTED':
@@ -54,6 +57,7 @@ export const ChecklistGrid: React.FC<ChecklistGridProps> = (
 			[ChecklistGridState.SELECTED]: 'bg-primary-25',
 			[ChecklistGridState.NEXT]: 'bg-primary-50',
 			[ChecklistGridState.DOING]: 'bg-secondary-dark',
+			[ChecklistGridState.BUG]: 'bg-warning-dark',
 			[ChecklistGridState.DONE]: 'bg-primary-400'
 		},
 		cols = 10,
@@ -76,8 +80,9 @@ export const ChecklistGrid: React.FC<ChecklistGridProps> = (
 	const selected: ChecklistGridDotProps[] = tasks.filter((item: { state: ChecklistGridState; }) => item.state === ChecklistGridState.SELECTED);
 	const doing: ChecklistGridDotProps[] = tasks.filter((item: { state: ChecklistGridState; }) => item.state === ChecklistGridState.DOING);
 	const next: ChecklistGridDotProps[] = tasks.filter((item: { state: ChecklistGridState; }) => item.state === ChecklistGridState.NEXT);
+	const bug: ChecklistGridDotProps[] = tasks.filter((item: { state: ChecklistGridState; }) => item.state === ChecklistGridState.BUG);
 	const done: ChecklistGridDotProps[] = tasks.filter((item: { state: ChecklistGridState; }) => item.state === ChecklistGridState.DONE);
-	const sortedData = [...done, ...doing, ...next, ...selected];
+	const sortedData = [...done, ...doing, ...bug, ...next, ...selected];
 
 	const sectionContainer = (title: string, items: ChecklistGridDotProps[]) => {
 		return <SubSectionContainer>

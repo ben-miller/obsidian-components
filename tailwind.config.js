@@ -29,6 +29,11 @@ module.exports = {
 					DEFAULT: '#81C2E3', // Default pastel blue
 					dark: '#4D9ECF',    // Darker blue
 				},
+				warning: {
+					light: '#FF9999',   // Light pastel red
+					DEFAULT: '#FF4D4D', // Stronger, more contrasting pastel red
+					dark: '#CC3333',    // Darker, deep red for a strong contrast
+				},
 				background: '#FFFFFF', // White background
 				text: {
 					primary: '#333333',  // Dark gray for primary text
