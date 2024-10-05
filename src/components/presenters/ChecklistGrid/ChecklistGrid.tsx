@@ -7,9 +7,8 @@ import {
 	SubSectionLabel,
 	SubSectionLabelContainer
 } from "../Section/sectionLayouts";
-import {useQuery} from "@apollo/client";
-import {GET_ORG_MODE_TODO} from "../../../graphql/queries";
-import {useReloading} from "../../hooks/useReloading";
+import {GET_ORG_MODE_TODO, SUBSCRIBE_ORG_MODE_TODO} from "../../../graphql/queries";
+import {useQueryOrSubscription} from "../../hooks/useQueryOrSubscription";
 
 export enum ChecklistGridState {
 	SELECTED = 0,
@@ -65,16 +64,17 @@ export const ChecklistGrid: React.FC<ChecklistGridProps> = (
 		dotGap = 16,
 		className
 	}) => {
-	const queryResult = useQuery(GET_ORG_MODE_TODO, {
-		variables: { forceRefresh: true }
-	});
-	const { loading, error, data, refetch } = queryResult
-	const { reloading, reload } = useReloading(queryResult);
+	const { loading, error, data, reload } = useQueryOrSubscription(
+		GET_ORG_MODE_TODO,
+		SUBSCRIBE_ORG_MODE_TODO,
+		{ variables: { forceRefresh: true } },
+		true
+		);
 
 	if (loading) return <p>Loading...</p>;
 	if (error) return <p>Error loading data</p>;
 
-	const tasks = data.sources.org_mode.project_tasks.map((item: { state: string, label: string }) => {
+	const tasks = data.org_mode.project_tasks.map((item: { state: string, label: string }) => {
 		return { state: ChecklistGridState.fromString(item.state), label: item.label }
 	})
 	const selected: ChecklistGridDotProps[] = tasks.filter((item: { state: ChecklistGridState; }) => item.state === ChecklistGridState.SELECTED);
