@@ -32,7 +32,7 @@ export const GET_INBOX_COUNTS = gql`
 `;
 
 export const GET_MIND_AND_BODY_METRICS = gql`
-	query GetInboxCounts($forceRefresh: Boolean!) {
+	query GetMindAndBodyMetrics($forceRefresh: Boolean!) {
 		sources {
 			calendar(force_refresh: $forceRefresh) {
 				running { total_sessions }
@@ -44,7 +44,7 @@ export const GET_MIND_AND_BODY_METRICS = gql`
 `
 
 export const GET_JOB_SEARCH_METRICS = gql`
-	query GetInboxCounts($forceRefresh: Boolean!) {
+	query GetJobSearchMetrics($forceRefresh: Boolean!) {
 		sources {
 			calendar(force_refresh: $forceRefresh) {
 				dev { total_hours }
@@ -56,7 +56,7 @@ export const GET_JOB_SEARCH_METRICS = gql`
 `
 
 export const GET_ORG_MODE_TODO = gql`
-	query GetInboxCounts($forceRefresh: Boolean!) {
+	query GetOrgModeTodo($forceRefresh: Boolean!) {
 		sources {
 			org_mode(force_refresh: $forceRefresh) {
 				project_tasks {
@@ -69,7 +69,7 @@ export const GET_ORG_MODE_TODO = gql`
 `
 
 export const SUBSCRIBE_ORG_MODE_TODO = gql`
-	subscription GetOrgModeTodo {
+	subscription SubscribeOrgModeTodo {
 		org_mode {
 			project_tasks {
 				label
