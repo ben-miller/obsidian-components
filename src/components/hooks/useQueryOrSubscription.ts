@@ -4,7 +4,7 @@ import {useReloading} from "./useReloading";
 export const useQueryOrSubscription = <TData = any, TVariables = OperationVariables>(
 	queryString: DocumentNode,
 	subscriptionString: DocumentNode,
-	variables?: { variables: { forceRefresh: boolean } },
+	variables: { variables: { forceRefresh: boolean } },
 	subscription = false,
 ) => {
 	if (subscription) {
@@ -14,6 +14,6 @@ export const useQueryOrSubscription = <TData = any, TVariables = OperationVariab
 		const queryResult = useQuery(queryString, variables);
 		const { loading, error, data } = queryResult;
 		const { reloading, reload } = useReloading(queryResult);
-		return { loading, error, data: data.sources, reload }
+		return { loading, error, data: data?.sources, reload }
 	}
 };

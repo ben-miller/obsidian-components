@@ -68,7 +68,7 @@ export const ChecklistGrid: React.FC<ChecklistGridProps> = (
 		GET_ORG_MODE_TODO,
 		SUBSCRIBE_ORG_MODE_TODO,
 		{ variables: { forceRefresh: true } },
-		true
+		false
 		);
 
 	if (loading) return <p>Loading...</p>;
