@@ -8,7 +8,8 @@
     "obsidian:build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production && npx tailwindcss -i ./src/index.css -o ./styles.css",
     "web:build": "react-scripts build",
     "web:dev": "react-scripts start",
-    "version": "node version-bump.mjs && git add manifest.json versions.json"
+    "version": "node version-bump.mjs && git add manifest.json versions.json",
+    "vault:parse": "npx tsx src/markdown/parseVault.ts"
   },
   "keywords": [],
   "author": "",
