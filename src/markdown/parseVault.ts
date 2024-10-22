@@ -1,10 +1,15 @@
 import { promises as fs } from 'fs';
 import * as path from 'path';
 import pLimit from 'p-limit';
+import MarkdownIt from 'markdown-it';
+
+const md = new MarkdownIt()
 
 async function processMarkdownFile(filePath: string): Promise<string> {
 	try {
 		const content = await fs.readFile(filePath, 'utf-8');
+		const parsedContent = md.render(content);
+		console.log(parsedContent);
 		return content;
 	} catch (error) {
 		console.error(`Error reading file: ${filePath}`, error);
