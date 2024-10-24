@@ -1,10 +1,21 @@
-import {MarkdownPostProcessorContext, Plugin} from "obsidian";
+import {
+	App,
+	Editor,
+	EditorPosition,
+	EditorSuggest, EditorSuggestContext,
+	EditorSuggestTriggerInfo,
+	MarkdownPostProcessorContext,
+	Plugin,
+	TFile
+} from "obsidian";
 import {cleanupReactRoots, renderComponent} from "./obsidianRendering";
 import {
 	ProgressTableProps,
 	parseYamlToDotCountTableProps
 } from "../components/presenters/ProgressTable/ProgressTable";
 import yaml from "js-yaml";
+import {RelationalTagSuggestor} from "../relational-links/relationalTagSuggestor";
+import {RelationalLinkSuggestor} from "../relational-links/relationalLinkSuggestor";
 
 interface ParsedYaml {
 	component: string;
@@ -40,10 +51,20 @@ const parseYaml = (yamlString: string): ParsedYaml | null => {
 	}
 };
 
+
 export default class HtmlWidgetPlugin extends Plugin {
+	public relationalTagSuggestor: RelationalTagSuggestor | null = null;
+	public relationalLinkSuggestor: RelationalLinkSuggestor | null = null;
+
 	onload() {
-		console.log("HTML Widget Plugin loaded");
 		this.registerMarkdownCodeBlockProcessor("rc", this.processWidgetCodeBlock.bind(this))
+		console.log("HTML Widget Plugin loaded");
+
+		this.relationalTagSuggestor = new RelationalTagSuggestor(this.app, this);
+		this.registerEditorSuggest(this.relationalTagSuggestor);
+		this.relationalLinkSuggestor = new RelationalLinkSuggestor(this.app, this);
+		this.registerEditorSuggest(this.relationalLinkSuggestor);
+		console.log("Autocomplete Suggest loaded");
 	}
 
 	async processWidgetCodeBlock(source: string, el: HTMLElement, ctx: MarkdownPostProcessorContext) {
@@ -56,7 +77,15 @@ export default class HtmlWidgetPlugin extends Plugin {
 	}
 
 	onunload() {
-		console.log("HTML Widget Plugin unloaded");
 		cleanupReactRoots();
+		console.log("HTML Widget Plugin unloaded");
+
+		if (this.relationalTagSuggestor) {
+			this.relationalTagSuggestor = null;
+		}
+		if (this.relationalLinkSuggestor) {
+			this.relationalLinkSuggestor = null;
+		}
+		console.log("Autocomplete Suggest unloaded");
 	}
 }
