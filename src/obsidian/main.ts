@@ -65,6 +65,12 @@ export default class HtmlWidgetPlugin extends Plugin {
 		this.relationalLinkSuggestor = new RelationalLinkSuggestor(this.app, this);
 		this.registerEditorSuggest(this.relationalLinkSuggestor);
 		console.log("Autocomplete Suggest loaded");
+
+		this.registerEvent(
+			this.app.vault.on("modify", (file) => {
+				console.log(`File modified: ${file.path}`);
+			})
+		);
 	}
 
 	async processWidgetCodeBlock(source: string, el: HTMLElement, ctx: MarkdownPostProcessorContext) {
